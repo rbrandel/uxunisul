@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avaliação Sprint 1</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+padding:20px;
+background:#f5f5f5;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+h1{
+text-align:center;
+}
+
+label{
+font-weight:bold;
+}
+
+select,
+textarea,
+button{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:16px;
+}
+
+button{
+background:#0066ff;
+color:white;
+border:none;
+border-radius:10px;
+}
+
+.stars{
+display:flex;
+gap:10px;
+margin:10px 0;
+}
+
+.stars input{
+transform:scale(1.5);
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>WayHub Sprint 1</h1>
+
+<label>Equipe</label>
+
+<select id="team">
+<option>Alpha</option>
+<option>Beta</option>
+<option>Gama</option>
+<option>Delta</option>
+</select>
+
+<label>Clareza do Problema</label>
+<input type="number" id="c1" min="1" max="5">
+
+<label>Qualidade da Solução</label>
+<input type="number" id="c2" min="1" max="5">
+
+<label>Qualidade do Pitch</label>
+<input type="number" id="c3" min="1" max="5">
+
+<label>Comentário</label>
+
+<textarea id="comment"></textarea>
+
+<button onclick="saveVote()">
+Enviar Avaliação
+</button>
+
+</div>
+
+<script>
+
+function saveVote(){
+
+const vote = {
+
+team: team.value,
+
+problema:Number(c1.value),
+
+solucao:Number(c2.value),
+
+pitch:Number(c3.value),
+
+comment:comment.value
+
+};
+
+let votes=
+JSON.parse(localStorage.getItem("votes"))||[];
+
+votes.push(vote);
+
+localStorage.setItem(
+"votes",
+JSON.stringify(votes)
+);
+
+alert("Avaliação registrada!");
+
+}
+
+</script>
+
+</body>
+</html>
